@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Swap Failed on Uniswap or PancakeSwap – How to Fix It (2026)</title>
+  <meta name="description" content="Swap failed? Fix Uniswap & PancakeSwap swap errors: insufficient liquidity, slippage too low, gas estimation failed, transaction reverted, pending swaps, and best settings. Includes step-by-step runbook + deep FAQ (2026)." />
+  <meta name="author" content="DEX Reliability Desk" />
+  <link rel="canonical" href="https://swap-failed.github.io/" />
+
+  <meta property="og:title" content="Swap Failed on Uniswap or PancakeSwap – How to Fix It (2026)" />
+  <meta property="og:description" content="Fix DEX swap errors: slippage, liquidity, gas estimation, reverted swaps, pending transactions. Runbook + best settings + FAQ." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://swap-failed.github.io/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Swap Failed on Uniswap or PancakeSwap – How to Fix It (2026)",
+    "author":{"@type":"Organization","name":"DEX Reliability Desk"},
+    "datePublished":"2026-03-04",
+    "dateModified":"2026-03-04",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://swap-failed.github.io/"}
+  }
+  </script>
+
+  <!-- NEW FONT (different from previous page) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f8ff;
+      --bg2:#fff7ed;
+      --text:#0b1220;
+      --muted:#455268;
+      --border:#e6e9f3;
+      --card:rgba(255,255,255,.86);
+
+      --a:#ff6a00;   /* orange */
+      --a2:#2563eb;  /* blue */
+      --g:#16a34a;   /* green */
+      --y:#f59e0b;   /* amber */
+      --r:#ef4444;   /* red */
+
+      --shadow: 0 18px 50px rgba(2,6,23,.10);
+      --shadow2: 0 10px 26px rgba(2,6,23,.08);
+
+      --max: 1160px;
+      --r1: 18px;
+      --r2: 26px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      line-height:1.6;
+      background:
+        radial-gradient(900px 480px at 18% 8%, rgba(37,99,235,.14), transparent 60%),
+        radial-gradient(900px 480px at 82% 10%, rgba(255,106,0,.12), transparent 60%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+    }
+
+    a{color:var(--a2); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Top bar (your rule: keyword in brand, not domain) */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(246,248,255,.70);
+      border-bottom:1px solid rgba(230,233,243,.95);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:800;
+      letter-spacing:-.02em;
+      min-width: 260px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:16px;
+      background: linear-gradient(135deg, var(--a2), var(--a));
+      box-shadow: 0 16px 40px rgba(37,99,235,.16);
+      position:relative; overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:11px;
+      border-radius:14px;
+      background: rgba(255,255,255,.78);
+      transform: rotate(12deg);
+    }
+    .brand-title{font-size:14px; line-height:1.1}
+    .brand-sub{font-size:12px; color:var(--muted); font-weight:700; margin-top:2px}
+
+    .nav{
+      display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end;
+      font-size:13px;
+    }
+    .nav a{color:var(--muted)}
+    .nav a:hover{color:var(--text); text-decoration:none}
+
+    /* Buttons (your rule: ONE big centered CTA in hero) */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(230,233,243,.95);
+      background: rgba(255,255,255,.78);
+      color:var(--text);
+      font-weight:900;
+      box-shadow: var(--shadow2);
+      text-decoration:none !important;
+      transition: transform .15s ease, box-shadow .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: var(--shadow)}
+    .btn-primary{
+      color:#fff;
+      border:1px solid rgba(255,255,255,.30);
+      background: linear-gradient(135deg, rgba(255,106,0,.96), rgba(37,99,235,.92));
+      box-shadow: 0 20px 55px rgba(255,106,0,.18);
+    }
+    .btn-big{
+      padding: 18px 30px;
+      font-size: 16px;
+      min-width: min(560px, 100%);
+    }
+
+    /* Panels */
+    .section{padding: 18px 0}
+    .panel{
+      border-radius: var(--r2);
+      border:1px solid rgba(230,233,243,.95);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.70));
+      box-shadow: var(--shadow2);
+      padding: 18px;
+    }
+    .divider{height:1px; background: rgba(230,233,243,.95); margin: 14px 0}
+    .muted{color:var(--muted)}
+
+    h1{
+      margin:12px 0 10px;
+      font-size: clamp(30px, 3.2vw, 48px);
+      line-height:1.06;
+      letter-spacing:-.03em;
+    }
+    h2{margin:0 0 10px; font-size:22px; letter-spacing:-.02em}
+    h3{margin:0 0 8px; font-size:16px; letter-spacing:-.01em}
+    p{margin:0 0 10px}
+
+    /* HERO (new style) */
+    .hero{padding: 26px 0 10px}
+    .hero-card{
+      border-radius: var(--r2);
+      border:1px solid rgba(230,233,243,.95);
+      background:
+        radial-gradient(820px 260px at 18% 10%, rgba(37,99,235,.14), transparent 60%),
+        radial-gradient(820px 260px at 85% 12%, rgba(255,106,0,.14), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.70));
+      box-shadow: var(--shadow);
+      padding: 22px;
+      overflow:hidden;
+      position:relative;
+    }
+    .kickers{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .k{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(230,233,243,.95);
+      background: rgba(255,255,255,.70);
+      font-weight:900;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .k .dot{
+      width:8px; height:8px; border-radius:99px;
+      background: linear-gradient(135deg, var(--a), var(--a2));
+      box-shadow: 0 0 0 4px rgba(255,106,0,.10);
+    }
+
+    .hero-actions{
+      margin-top: 16px;
+      display:flex;
+      justify-content:center; /* centered */
+      align-items:center;
+    }
+
+    /* Symptom cards row */
+    .symptoms{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
+    }
+    .sym{
+      border-radius: 18px;
+      border:1px solid rgba(230,233,243,.95);
+      background: rgba(255,255,255,.70);
+      padding: 14px;
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .tag{
+      flex:0 0 auto;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      color:#fff;
+    }
+    .tag.r{background: var(--r)}
+    .tag.y{background: var(--y)}
+    .tag.b{background: var(--a2)}
+    .sym b{display:block}
+    .sym span{color:var(--muted); font-size:13px}
+
+    /* Grids */
+    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    .card{
+      border-radius: var(--r1);
+      border:1px solid rgba(230,233,243,.95);
+      background: rgba(255,255,255,.72);
+      padding: 16px;
+    }
+    ul{margin: 8px 0 0 18px; color:var(--muted)}
+    li{margin:6px 0}
+
+    /* Tables */
+    .table-wrap{overflow:auto; border-radius:18px; border:1px solid rgba(230,233,243,.95)}
+    table{border-collapse:collapse; width:100%; min-width:860px; background: rgba(255,255,255,.86)}
+    th,td{padding:12px 12px; border-bottom:1px solid rgba(230,233,243,.95); vertical-align:top}
+    th{font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); text-align:left; background: rgba(246,248,255,.92)}
+    tr:last-child td{border-bottom:none}
+
+    /* Input */
+    .checker{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;
+    }
+    .input{
+      flex: 1 1 460px;
+      display:flex; align-items:center; gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(230,233,243,.95);
+      background: rgba(255,255,255,.80);
+      box-shadow: 0 10px 25px rgba(2,6,23,.06);
+    }
+    .input input{
+      border:none; outline:none; width:100%;
+      background:transparent;
+      font-size:14px;
+      color:var(--text);
+      font-family: "Manrope", system-ui;
+    }
+    .kbd{
+      font-weight:900; font-size:12px; color:var(--muted);
+      border:1px solid rgba(230,233,243,.95);
+      background: rgba(246,248,255,.90);
+      padding: 4px 8px;
+      border-radius: 10px;
+    }
+
+    /* Sources (unique set vs previous pages) */
+    .sources{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;
+    }
+    .src{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(230,233,243,.95);
+      background: rgba(255,255,255,.72);
+      color:var(--muted);
+      font-size:13px;
+      text-decoration:none;
+    }
+    .src:hover{color:var(--text); text-decoration:none}
+
+    /* FAQ */
+    details{
+      border:1px solid rgba(230,233,243,.95);
+      border-radius: 16px;
+      background: rgba(255,255,255,.72);
+      padding: 12px 12px;
+    }
+    details + details{margin-top:10px}
+    summary{cursor:pointer; font-weight:900}
+    details p{margin:10px 0 0; color:var(--muted)}
+
+    /* Author */
+    .author{
+      display:flex; gap:12px; align-items:flex-start;
+      border:1px solid rgba(230,233,243,.95);
+      background: rgba(255,255,255,.72);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .avatar{
+      width:44px; height:44px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255,106,0,.96), rgba(37,99,235,.92));
+      box-shadow: 0 12px 30px rgba(255,106,0,.16);
+      position:relative;
+      flex:0 0 auto;
+    }
+    .avatar:after{
+      content:"";
+      position:absolute; inset:10px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.82);
+      transform: rotate(10deg);
+    }
+    .smallcaps{font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted)}
+
+    .footer{
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer .row{
+      display:flex; gap:14px; justify-content:space-between; flex-wrap:wrap; align-items:center;
+    }
+
+    @media (max-width: 980px){
+      .grid2{grid-template-columns:1fr}
+      .symptoms{grid-template-columns:1fr}
+      table{min-width:760px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand" aria-label="Brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <!-- keyword instead of domain -->
+            <div class="brand-title">swap failed</div>
+            <div class="brand-sub">DEX swap error runbook • Updated 2026</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Top navigation">
+          <a href="#why">Why swaps fail</a>
+          <a href="#errors">Common errors</a>
+          <a href="#liquidity">Liquidity</a>
+          <a href="#slippage">Slippage</a>
+          <a href="#gas">Gas</a>
+          <a href="#revert">Reverted</a>
+          <a href="#fix">Fix steps</a>
+          <a href="#settings">Best settings</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="kickers">
+            <span class="k"><span class="dot" aria-hidden="true"></span> DEX troubleshooting-first</span>
+            <span class="k">Uniswap + PancakeSwap</span>
+            <span class="k">Keyword focus: “swap failed”</span>
+          </div>
+
+          <h1>Swap Failed on Uniswap or PancakeSwap – How to Fix It</h1>
+
+          <p class="muted" style="max-width:980px">
+            A <b>swap failed</b> message usually comes from one of five causes: <b>insufficient liquidity</b>, <b>slippage tolerance too low</b>,
+            <b>gas estimation failed</b>, <b>transaction reverted</b>, or a <b>pending / stuck swap</b>.
+            This page is a practical, step-by-step fix guide for <b>swap failed uniswap</b>, <b>swap failed pancakeswap</b>, and other <b>dex swap error</b> cases.
+          </p>
+
+          <!-- ONE CTA, centered & larger -->
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-big" href="#fix" aria-label="Jump to fix steps">Fix my failed swap (step-by-step)</a>
+          </div>
+
+          <div class="symptoms" aria-label="Quick diagnosis">
+            <div class="sym">
+              <span class="tag r">Revert</span>
+              <div>
+                <b>Transaction reverted</b>
+                <span>Token/router rules fail, tax tokens, anti-bot checks, or deadline expired.</span>
+              </div>
+            </div>
+            <div class="sym">
+              <span class="tag y">Slip</span>
+              <div>
+                <b>Slippage / price moved</b>
+                <span>Volatility or MEV moves price beyond your tolerance.</span>
+              </div>
+            </div>
+            <div class="sym">
+              <span class="tag b">Liq</span>
+              <div>
+                <b>Insufficient liquidity</b>
+                <span>Pool is thin or route is wrong—quote exists but execution fails.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Why Crypto Swaps Fail on DEX</h2>
+          <p class="muted">
+            DEX swaps are on-chain transactions. If any requirement is not met (pool math, router rules, token transfer rules, gas constraints),
+            the trade fails. A “price shown” in UI does not guarantee execution.
+          </p>
+
+          <div class="table-wrap" style="margin-top:12px" aria-label="Swap failure map">
+            <table>
+              <thead>
+                <tr>
+                  <th>What you see</th>
+                  <th>Typical reason</th>
+                  <th>Fastest check</th>
+                  <th>Fix direction</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Insufficient liquidity</b></td>
+                  <td>Pool too thin / wrong path / pair missing</td>
+                  <td>Check route + pool reserves</td>
+                  <td>Try different route, reduce size</td>
+                </tr>
+                <tr>
+                  <td><b>Slippage tolerance too low</b></td>
+                  <td>Price moved or MEV</td>
+                  <td>Increase slippage slightly + shorten deadline</td>
+                  <td>Use safe slippage ranges</td>
+                </tr>
+                <tr>
+                  <td><b>Gas estimation failed</b></td>
+                  <td>Transaction would revert</td>
+                  <td>Try smaller amount; check token restrictions</td>
+                  <td>Confirm token is transferable/tradable</td>
+                </tr>
+                <tr>
+                  <td><b>Swap reverted</b></td>
+                  <td>Deadline expired / token transfer rules / router checks</td>
+                  <td>See revert reason; adjust deadline/slippage</td>
+                  <td>Fix parameters, verify token</td>
+                </tr>
+                <tr>
+                  <td><b>Swap pending</b></td>
+                  <td>Gas too low / network congestion</td>
+                  <td>Check tx in explorer</td>
+                  <td>Speed up / replace tx</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid2">
+            <div class="card">
+              <h3>Most common “fast fix”</h3>
+              <ul>
+                <li>Reduce swap size</li>
+                <li>Use sane slippage (don’t go extreme)</li>
+                <li>Shorten deadline (prevents stale quotes)</li>
+                <li>Confirm you picked the correct token address</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Most common “hard stop”</h3>
+              <ul>
+                <li>Token transfer restrictions (honeypot-like behavior)</li>
+                <li>Blacklist / anti-bot gating</li>
+                <li>Liquidity removed or route invalid</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ERRORS -->
+    <section id="errors" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Common Swap Errors Explained</h2>
+          <p class="muted">
+            Most DEX UIs group many on-chain failures under generic “swap failed”. These are the patterns that matter.
+          </p>
+
+          <div class="grid2" style="margin-top:12px">
+            <div class="card">
+              <h3>swap exact tokens for ETH failed</h3>
+              <ul>
+                <li>Slippage too low during fast price movement</li>
+                <li>Tax token makes output smaller than expected</li>
+                <li>Route uses a thin pool or wrong pair</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>uniswap transaction reverted</h3>
+              <ul>
+                <li>Deadline expired or minOut not met</li>
+                <li>Token transfer returns false / reverts</li>
+                <li>Router checks fail due to state change</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="muted" style="margin:0">
+            If you see repeated reverts on tiny swaps with a verified token address, treat it as high-risk token behavior—not a UI bug.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIQUIDITY -->
+    <section id="liquidity" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Insufficient Liquidity for This Trade</h2>
+          <p class="muted">
+            Liquidity is the pool depth behind the quote. Thin pools can show a quote but fail at execution (or complete with extreme price impact).
+          </p>
+
+          <div class="grid2" style="margin-top:12px">
+            <div class="card">
+              <h3>What to do</h3>
+              <ul>
+                <li>Reduce trade size (often fixes immediately)</li>
+                <li>Try a different route (stable pair → blue-chip pair)</li>
+                <li>Verify you selected the correct token contract</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Red flags</h3>
+              <ul>
+                <li>Pool reserves drop suddenly</li>
+                <li>Only buys succeed but sells fail (restriction risk)</li>
+                <li>Price impact is massive even for small swaps</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIPPAGE -->
+    <section id="slippage" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Slippage Tolerance Too Low</h2>
+          <p class="muted">
+            Slippage protects you from receiving less than expected. If it’s too low, swaps fail when the price moves (or MEV changes state).
+          </p>
+
+          <div class="table-wrap" style="margin-top:12px" aria-label="Suggested slippage ranges">
+            <table>
+              <thead>
+                <tr>
+                  <th>Trade type</th>
+                  <th>Typical slippage</th>
+                  <th>When to increase</th>
+                  <th>When NOT to increase</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Stable ↔ stable</b></td>
+                  <td>0.1% – 0.5%</td>
+                  <td>Only if pool is thin</td>
+                  <td>Don’t go high — indicates bad route</td>
+                </tr>
+                <tr>
+                  <td><b>Blue-chip ↔ blue-chip</b></td>
+                  <td>0.5% – 1.0%</td>
+                  <td>High volatility moments</td>
+                  <td>If you suspect tax token behavior</td>
+                </tr>
+                <tr>
+                  <td><b>Low-cap / meme</b></td>
+                  <td>1% – 5%</td>
+                  <td>Only for genuine volatility</td>
+                  <td>If sells revert or output collapses (risk)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="muted" style="margin:0">
+            If the only way to swap is “extreme slippage,” you’re often dealing with thin liquidity, taxes, or malicious token mechanics.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAS -->
+    <section id="gas" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Gas Estimation Failed</h2>
+          <p class="muted">
+            “Gas estimation failed” often means the transaction would revert. It can be caused by token restrictions, invalid parameters,
+            or a stale quote.
+          </p>
+
+          <div class="grid2" style="margin-top:12px">
+            <div class="card">
+              <h3>Fix checklist</h3>
+              <ul>
+                <li>Reduce amount and try again</li>
+                <li>Increase slippage slightly (not extreme)</li>
+                <li>Shorten the deadline</li>
+                <li>Confirm token address (avoid fake clones)</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>If it persists</h3>
+              <ul>
+                <li>Token transfer may revert (restriction/tax)</li>
+                <li>Route or pool may be invalid</li>
+                <li>Try another DEX router on the same chain</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVERT -->
+    <section id="revert" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Swap Transaction Reverted</h2>
+          <p class="muted">
+            A revert can happen when minimum received is not met, deadline expired, token transfer fails, or contract rules reject the trade.
+          </p>
+
+          <div class="card" style="margin-top:12px">
+            <h3>Fast actions</h3>
+            <ul>
+              <li>Set a reasonable deadline (e.g., 5–10 minutes)</li>
+              <li>Re-check selected token address</li>
+              <li>Try a tiny swap first</li>
+              <li>If it’s a tax token, minOut may be too strict</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIX -->
+    <section id="fix" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>How to Fix Failed Token Swaps</h2>
+          <p class="muted">
+            Run this workflow in order for any <b>dex swap error</b> on Uniswap or PancakeSwap.
+          </p>
+
+          <div class="grid2" style="margin-top:12px">
+            <div class="card">
+              <h3>Step-by-step runbook</h3>
+              <ol style="margin: 10px 0 0 18px; color:var(--muted)">
+                <li><b>Verify the token address</b> (don’t trust tickers/logos).</li>
+                <li><b>Try a tiny swap</b> to confirm execution.</li>
+                <li><b>Check liquidity</b> (thin pools fail or cause huge price impact).</li>
+                <li><b>Set slippage</b> to a safe range (see “Best settings”).</li>
+                <li><b>Set deadline</b> to 5–10 minutes.</li>
+                <li><b>Check gas</b>: if pending, speed up/replace transaction.</li>
+              </ol>
+            </div>
+
+            <div class="card">
+              <h3>Paste a tx hash or token address (optional)</h3>
+              <p class="muted" style="margin-bottom:8px">No external calls—this just helps you keep notes consistent.</p>
+              <div class="checker">
+                <div class="input">
+                  <span class="kbd">TX</span>
+                  <input id="txOrAddr" placeholder="Paste tx hash (0x...) or token address (0x...)" aria-label="Tx hash or token address" />
+                </div>
+                <a class="btn btn-primary" href="#settings">Best settings</a>
+              </div>
+
+              <div class="divider"></div>
+
+              <h3>When to stop</h3>
+              <ul>
+                <li>Repeated reverts on tiny swaps</li>
+                <li>Only buys work but sells fail</li>
+                <li>Liquidity looks drained or moved</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="settings" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Best Settings for Successful Swaps</h2>
+          <p class="muted">
+            These defaults reduce failures without pushing you into dangerous “infinite slippage” territory.
+          </p>
+
+          <div class="grid2" style="margin-top:12px">
+            <div class="card">
+              <h3>Recommended defaults</h3>
+              <ul>
+                <li><b>Deadline:</b> 5–10 minutes</li>
+                <li><b>Slippage:</b> 0.5–1% (blue-chip), 1–3% (volatile)</li>
+                <li><b>Trade size:</b> start tiny, scale only after success</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Do NOT do this</h3>
+              <ul>
+                <li>Don’t jump to extreme slippage as a “fix”</li>
+                <li>Don’t swap unknown tokens without verifying address</li>
+                <li>Don’t ignore repeated reverts—often token-level risk</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h3>Authoritative sources (unique set for this page)</h3>
+          <p class="muted">
+            Protocol and wallet references used in this guide:
+          </p>
+          <div class="sources" aria-label="Sources">
+            <a class="src" href="https://support.uniswap.org/" target="_blank" rel="nofollow noopener">Uniswap Support</a>
+            <a class="src" href="https://docs.pancakeswap.finance/" target="_blank" rel="nofollow noopener">PancakeSwap Docs</a>
+            <a class="src" href="https://support.metamask.io/" target="_blank" rel="nofollow noopener">MetaMask Support</a>
+            <a class="src" href="https://www.alchemy.com/gwei-calculator" target="_blank" rel="nofollow noopener">Alchemy: gas basics</a>
+            <a class="src" href="https://www.cloudflare.com/learning/security/what-is-mev/" target="_blank" rel="nofollow noopener">Cloudflare: MEV explainer</a>
+            <a class="src" href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/fraud_awareness_advisories.html" target="_blank" rel="nofollow noopener">CFTC fraud advisories</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTHOR / EEAT -->
+    <section class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Trust & Update Notes</h2>
+
+          <div class="author" aria-label="Author box">
+            <div class="avatar" aria-hidden="true"></div>
+            <div>
+              <div class="smallcaps">Author</div>
+              <div><b>DEX Reliability Desk</b> — practical execution runbooks for DEX swap failures.</div>
+              <div class="muted" style="margin-top:6px">
+                Last updated: <b>March 4, 2026</b> • Educational content only (not financial advice).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>FAQ – Swap Failed Errors</h2>
+
+          <details>
+            <summary>Why does my swap fail on Uniswap?</summary>
+            <p>
+              The most common causes are slippage too low, insufficient liquidity, or a transaction revert due to token/router rules.
+              Start with a tiny swap, verify token address, then adjust slippage and deadline.
+            </p>
+          </details>
+
+          <details>
+            <summary>Why does PancakeSwap show “swap failed”?</summary>
+            <p>
+              PancakeSwap failures are usually liquidity/route issues, slippage settings, or token transfer restrictions.
+              If tiny swaps revert repeatedly, treat it as token-level risk.
+            </p>
+          </details>
+
+          <details>
+            <summary>What does “swap exact tokens for ETH failed” mean?</summary>
+            <p>
+              It often means the minimum received wasn’t met (price moved beyond slippage), liquidity is too thin, or the token has taxes/restrictions
+              that reduce output below your minOut.
+            </p>
+          </details>
+
+          <details>
+            <summary>How much slippage should I use to avoid failed swaps?</summary>
+            <p>
+              Typical ranges: 0.1–0.5% for stable swaps, 0.5–1% for blue-chip pairs, and 1–3% for volatile tokens.
+              If execution requires extreme slippage, investigate liquidity and token mechanics.
+            </p>
+          </details>
+
+          <details>
+            <summary>What does “gas estimation failed” indicate?</summary>
+            <p>
+              Often it means the transaction would revert. Reduce amount, verify token address, check liquidity/route,
+              and only increase slippage slightly if volatility explains the failure.
+            </p>
+          </details>
+
+          <details>
+            <summary>My DEX swap is pending — what should I do?</summary>
+            <p>
+              Pending swaps usually mean gas is too low or the network is congested. Check the transaction in a block explorer and use your wallet’s
+              speed-up/replace feature if needed.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is “transaction reverted” always a scam token?</summary>
+            <p>
+              Not always. It can be deadline/slippage, routing, or state change. But repeated reverts on tiny swaps with verified addresses
+              can indicate token transfer restrictions or malicious mechanics.
+            </p>
+          </details>
+
+          <details>
+            <summary>What are the safest “best settings” for swaps?</summary>
+            <p>
+              Use a 5–10 minute deadline, start with a tiny trade, keep slippage reasonable (0.5–1% for blue-chip), and verify token addresses.
+              Use official docs: Uniswap Support and PancakeSwap Docs.
+            </p>
+          </details>
+
+          <div class="divider"></div>
+
+          <p class="muted" style="margin:0">
+            Primary keywords: <b>swap failed</b>, <b>swap failed uniswap</b>, <b>swap failed pancakeswap</b>, <b>dex swap error</b>, <b>crypto swap failed</b>.
+            Long-tail: <b>swap exact tokens for eth failed</b>, <b>uniswap transaction reverted</b>, <b>pancakeswap swap error</b>, <b>dex swap pending</b>, <b>crypto swap error</b>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer">
+      <div class="container">
+        <div class="row">
+          <div>© 2026 swap-failed.github.io • DEX swap troubleshooting</div>
+          <div>
+            <a href="#fix">Fix steps</a> • <a href="#settings">Best settings</a> • <a href="#faq">FAQ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // UX: extract 0x address or tx hash if user pastes extra text
+    (function(){
+      const input = document.getElementById('txOrAddr');
+      if(!input) return;
+
+      function normalize(){
+        const v = (input.value || "").trim();
+        const tx = v.match(/0x[a-fA-F0-9]{64}/);
+        const addr = v.match(/0x[a-fA-F0-9]{40}/);
+        if(tx) input.value = tx[0];
+        else if(addr) input.value = addr[0];
+      }
+
+      input.addEventListener('paste', () => setTimeout(normalize, 0));
+      input.addEventListener('blur', normalize);
+    })();
+  </script>
+</body>
+</html>
