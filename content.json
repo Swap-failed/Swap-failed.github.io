@@ -1,0 +1,96 @@
+{
+  "key_facts": {
+    "Category": "DEX swap troubleshooting",
+    "Network": "Ethereum and EVM networks",
+    "Token": "Varies by pair",
+    "Custody": "Wallet-signed transactions"
+  },
+  "intent": [
+    {
+      "q": "Uniswap swap failed slippage limits",
+      "a": "A Uniswap swap failed message often comes from slippage limits. Slippage is the allowed difference between the quoted output and the real output when the transaction executes. Uniswap support states that the interface can fail a transaction if the real output moves beyond the user's slippage limit. This can happen in volatile pairs, low-liquidity pools, fee-on-transfer tokens, or during network congestion. The fix is not automatically to raise slippage. First refresh the quote, check price impact, verify the token contract, and reduce trade size if needed. Only adjust slippage after understanding the extra execution risk, especially for unfamiliar tokens."
+    },
+    {
+      "q": "Uniswap swap failed because transaction deadline expired",
+      "a": "A Uniswap swap can fail when the transaction deadline expires before the transaction confirms. Uniswap support describes a default deadline mechanism intended to stop stale swaps from executing after significant price movement. This can happen if the wallet's network cost setting is too low, the chain is congested, or the user waits too long after building the quote. The practical fix is to reopen the official app, refresh the quote, check gas settings, and submit a new transaction only if the wallet prompt matches the intended trade. Do not reuse copied support links or sign replacement transactions from unofficial pages."
+    },
+    {
+      "q": "Uniswap swap failed insufficient funds for gas",
+      "a": "A swap failed error can appear even when the wallet has enough input tokens if it lacks the network token for gas. On Ethereum, gas is paid in ETH; on other EVM networks, it is paid in that network's native token. WETH, USDC, WBTC, or another ERC-20 balance cannot normally pay the chain fee. Users should keep enough native gas token for both approval and swap transactions. If an approval succeeds but the swap fails, the wallet may still have spent gas on the approval. Check the transaction hash in a block explorer to see whether the failed action reached the chain or was only rejected in the wallet."
+    },
+    {
+      "q": "Uniswap swap failed token not supported or token fee",
+      "a": "Some swap failed cases come from token behavior rather than the Uniswap app itself. Uniswap support notes that token fees can require different execution settings and that rebasing, reflection, or debasing tokens are not supported by the Uniswap v3 or v4 routers. Scam or restricted tokens can also block sells, impose transfer taxes, or fail on specific routes. Before retrying, inspect token warnings, contract address, liquidity, buy/sell fee claims, and whether the route uses a supported router. If the token is unfamiliar, raising slippage can make execution worse rather than solve the underlying contract restriction."
+    },
+    {
+      "q": "Uniswap swap failed but gas was charged",
+      "a": "If a failed swap transaction reaches the blockchain and reverts, gas can still be charged because validators or block builders processed the attempted execution. If the user rejects the transaction inside the wallet before broadcast, there is normally no on-chain gas cost. The key is to check the transaction hash: a block explorer can show whether the transaction was successful, reverted, pending, or never submitted. A reverted swap does not deliver output tokens, but token approvals from a separate successful approval transaction can remain active. After repeated failures, review approvals, token route, slippage, gas, and exact network instead of blindly retrying."
+    }
+  ],
+  "compare": null,
+  "faq": [
+    {
+      "q": "Why did my Uniswap swap fail?",
+      "a": "Common causes include slippage limits, expired transaction deadline, insufficient native gas token, unsupported token behavior, token transfer fees, stale quote, wallet rejection, or wrong network. Refresh the official app quote and inspect the wallet prompt before submitting another transaction."
+    },
+    {
+      "q": "Can a failed swap still cost gas?",
+      "a": "Yes. If the transaction was broadcast and reverted on-chain, gas can still be charged for the attempted execution. If you only rejected the wallet prompt before broadcast, there is normally no on-chain gas charge. Check the transaction hash to confirm."
+    },
+    {
+      "q": "Should I increase slippage after a swap failed?",
+      "a": "Not automatically. Higher slippage can help with volatile or fee-on-transfer tokens, but it also accepts worse execution. First check token legitimacy, price impact, liquidity, route, gas, and whether the token is supported by the router being used."
+    },
+    {
+      "q": "Why did approval work but swap failed?",
+      "a": "Approval and swap are often separate transactions. The approval may succeed because it only grants token spending permission, while the swap can still fail because of slippage, gas, token restrictions, expired deadline, or insufficient liquidity. Review and revoke approvals if they are no longer needed."
+    },
+    {
+      "q": "What does transaction deadline expired mean on Uniswap?",
+      "a": "It means the swap was not executed within the app's deadline window, often because gas settings were too low or network conditions delayed inclusion. Reopen the official app, refresh the quote, check network cost, and submit a new transaction only if the details are correct."
+    },
+    {
+      "q": "Where should I retry after a swap failed?",
+      "a": "Retry only from the official app domain, such as app.uniswap.org, or a trusted wallet route. Avoid search ads, copied support links, or direct messages offering to fix a failed swap. A legitimate retry should never require a seed phrase or private key."
+    }
+  ],
+  "niche": {
+    "type": "swap",
+    "asset": "ETH",
+    "receive": "USDC",
+    "supported_networks": [
+      "Ethereum",
+      "Arbitrum",
+      "Base",
+      "Optimism",
+      "Polygon"
+    ]
+  },
+  "authority": [
+    {
+      "text": "Uniswap transaction failure support",
+      "url": "https://support.uniswap.org/hc/en-us/articles/8643975058829-Why-did-my-transaction-fail"
+    },
+    {
+      "text": "Uniswap price impact support",
+      "url": "https://support.uniswap.org/hc/en-us/articles/8671539602317-What-is-price-impact"
+    },
+    {
+      "text": "Uniswap trading overview",
+      "url": "https://developers.uniswap.org/docs/trading/overview"
+    },
+    {
+      "text": "Uniswap web app",
+      "url": "https://app.uniswap.org/swap"
+    },
+    {
+      "text": "Ethereum wallets guide",
+      "url": "https://ethereum.org/en/wallets/"
+    }
+  ],
+  "sameAs": [
+    "https://x.com/Uniswap",
+    "https://github.com/Uniswap",
+    "https://defillama.com/protocol/uniswap"
+  ]
+}
