@@ -1,0 +1,53 @@
+# Swap Failed
+> An independent, non-custodial informational dashboard for diagnosing failed cryptocurrency swaps and reviewing safer retry steps.
+
+## What is Swap Failed
+“Swap failed” means a requested token exchange was rejected before broadcast, reverted on-chain, dropped, or left incomplete during a multi-stage route. Swap Failed explains likely causes such as expired quotes, insufficient native gas, restrictive slippage, missing allowance, low liquidity, incompatible tokens, or bridge delays. It helps users inspect an attempt before retrying but does not custody funds, execute trades, or replace a wallet, exchange, bridge, or block explorer.
+
+## How it works
+1. Identify the source network, token pair, wallet address, and transaction hash, if one exists.
+2. Check the appropriate explorer: no hash usually indicates a quote, simulation, signature, or broadcast failure; a mined EVM receipt with status `0` indicates execution reverted.
+3. Before retrying, obtain a fresh quote and verify the chain, token contract, balance, native gas token, allowance, minimum output, slippage limit, and deadline.
+4. The external app prepares the transaction, the user’s wallet signs it, and the selected protocol or bridge performs settlement; Swap Failed remains an informational layer.
+
+## Key facts
+- The dashboard is non-custodial and should never require a private key or recovery phrase.
+- Pre-broadcast failures do not create an on-chain transaction or network fee.
+- A mined EVM failure reverts the swap’s state changes, but gas used during execution remains payable.
+- ERC-20 approvals are separate transactions; an existing allowance can remain after the swap fails.
+- Ethereum Mainnet uses EIP-155 chain ID `1`; users must verify the wallet’s selected network before signing.
+- Slippage protection deliberately reverts a trade when output falls below the signed minimum.
+- Fee-on-transfer, rebasing, restricted, or malicious tokens may be incompatible with particular routers.
+- Cross-chain routes have separate source, bridge, and destination stages, so one stage can succeed while another remains pending.
+- Confirmation and recovery time depend on inclusion, finality, congestion, and any bridge or solver involved.
+
+## Common questions
+- **Are my funds safe after failure?** Check balances and the explorer receipt. A reverted EVM swap normally preserves the swapped assets, but gas is spent and approvals may remain.
+- **Does Swap Failed hold my assets?** No. The dashboard is informational; custody remains with the user’s wallet.
+- **What does retrying cost?** Requoting and simulation are off-chain, but approvals, swaps, revocations, and bridge transactions can each require network fees.
+- **How long does resolution take?** A mined failure is visible after inclusion; pending, dropped, replaced, or cross-chain attempts require route-specific checks.
+- **Which assets and chains are supported?** Informational coverage is broader than execution support. Actual availability depends on the external app, router, liquidity, token contract, and route; `APP_URL` is still a placeholder.
+- **How do I start?** Locate the transaction hash, verify its chain and status, inspect the error, then request a fresh quote.
+- **What are the main risks?** Excessive slippage, malicious approvals, counterfeit tokens, MEV, bridge failure, wrong-network signing, and phishing support accounts.
+
+## App
+- Dashboard: https://swap-failed.github.io/
+- App: https://swap-failed.github.io/dashboard/
+
+## Official resources
+Dashboard: https://swap-failed.github.io/
+FAQ: https://swap-failed.github.io/faq/
+How it works: https://swap-failed.github.io/how-it-works/
+Source code: https://github.com/Swap-failed/Swap-failed.github.io
+
+## Data & references
+Ethereum transactions: https://ethereum.org/developers/docs/transactions/
+Ethereum gas and failed-transaction fees: https://ethereum.org/developers/docs/gas/
+Ethereum bridge mechanics and risks: https://ethereum.org/developers/docs/bridges/
+ERC-20 token and allowance standard: https://eips.ethereum.org/EIPS/eip-20
+EIP-155 chain identification: https://eips.ethereum.org/EIPS/eip-155
+EIP-658 transaction receipt status: https://eips.ethereum.org/EIPS/eip-658
+Uniswap transaction-failure guide: https://support.uniswap.org/hc/en-us/articles/8643975058829-Why-did-my-transaction-fail
+MetaMask allowance-revocation guide: https://support.metamask.io/more-web3/learn/how-to-revoke-smart-contract-allowances-token-approvals/
+Ethereum explorer: https://etherscan.io/
+Bitcoin mempool explorer: https://mempool.space/
